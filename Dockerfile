@@ -11,8 +11,8 @@ ARG TARGETOS
 ARG TARGETARCH
 ARG BUILD_TIME
 
-RUN --mount=type=cache,id=s/ad3830c3-c23d-4422-a038-421be4b7e9e1,target=/root/.cache/go-build \
-    --mount=type=cache,id=s/ad3830c3-c23d-4422-a038-421be4b7e9e1,target=/go/pkg \
+RUN --mount=type=cache,target=/root/.cache/go-build \
+    --mount=type=cache,target=/go/pkg \
     BUILD_TIME="${BUILD_TIME:-$(date "+%b %d, %Y")}" && \
     CGO_ENABLED=0 \
     GOOS=$TARGETOS \

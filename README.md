@@ -1,0 +1,42 @@
+# linkme
+
+A simple, fast link tree style page built with Go. All assets are embedded at build time into a single binary.
+
+## Usage
+
+Edit `config.yaml` to customize your links, then build and run:
+
+```bash
+go build -ldflags "-X 'main.buildTime=$(date "+%b %d, %Y")'" -o linkme .
+./linkme
+```
+
+The server runs on port 8080 by default. Set the `PORT` environment variable to change it.
+
+## Docker
+
+```bash
+docker run -p 8080:8080 ghcr.io/alexraskin/linkme:latest
+```
+
+## Configuration
+
+All configuration is done in `config.yaml`. See the file for available options:
+
+- Profile: name, subtitle, description, avatar
+- Links: main link buttons with icons and colors
+- Sections: grouped links with headings
+- Socials: footer social icons
+- Meta: SEO and favicon settings
+
+## Assets
+
+Place your images in the `assets/` directory:
+
+- `avatar.png` - profile picture
+- `favicon.ico` - favicon
+- `icons/` - custom link icons
+
+## License
+
+unlicense

@@ -38,10 +38,15 @@ links:
     icon: "globe"
     color: "#404040"
 
-  - title: "GitHub: alexraskin"
+  - title: "@alexraskin"
     url: "https://github.com/alexraskin"
     icon: "github"
     color: "#0a0a0a"
+  
+  - title: "Cosmo the Cat"
+    url: "https://cosmothecat.net"
+    iconUrl: "assets/icons/cat.svg"
+    color: "#FFA500"
 
 socials:
   - icon: "x"

@@ -54,6 +54,10 @@ socials:
     url: "https://x.com/notalexraskin"
     color: "#000000"
 
+  - icon: "bluesky"
+    url: "https://bsky.app/profile/alexraskin.bsky.social"
+    color: "#1185FE"
+
 # Footer
 footer:
   poweredBy:

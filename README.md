@@ -7,8 +7,8 @@ A simple, fast link tree style page built with Go. All assets are embedded at bu
 Edit `config.yaml` to customize your links, then build and run:
 
 ```bash
-go build -ldflags "-X 'main.buildTime=$(date "+%b %d, %Y")'" -o linkme .
-./linkme
+make build
+make run
 ```
 
 The server runs on port 8080 by default. Set the `PORT` environment variable to change it.
@@ -16,7 +16,8 @@ The server runs on port 8080 by default. Set the `PORT` environment variable to 
 ## Docker
 
 ```bash
-docker run -p 8080:8080 ghcr.io/alexraskin/linkme:latest
+make docker-build
+make docker-run
 ```
 
 ## Configuration

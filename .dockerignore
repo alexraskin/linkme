@@ -1,5 +1,6 @@
-linkme
 Dockerfile
 .gitignore
 LICENSE
 README.md
+dist/*
+Makefile

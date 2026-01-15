@@ -21,6 +21,10 @@ RUN --mount=type=cache,target=/root/.cache/go-build \
 
 FROM alpine
 
+LABEL org.opencontainers.image.description="A simple, fast link tree style page built with Go"
+LABEL org.opencontainers.image.source="https://github.com/alexraskin/linkme"
+LABEL org.opencontainers.image.licenses="Unlicense"
+
 RUN apk --no-cache add ca-certificates
 
 COPY --from=build /build/linkme /bin/linkme

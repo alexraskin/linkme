@@ -2,10 +2,11 @@ package main
 
 import (
 	"embed"
+	"flag"
 	"html/template"
-	"log"
+	"log/slog"
 	"net/http"
-	"os"
+	"strconv"
 	"strings"
 
 	"github.com/go-chi/chi/v5"
@@ -25,7 +26,6 @@ var static embed.FS
 //go:embed all:assets
 var assets embed.FS
 
-// Config represents the YAML configuration
 type Config struct {
 	ConfigVersion string     `yaml:"configVersion"`
 	Meta          Meta       `yaml:"meta"`
@@ -80,7 +80,6 @@ type PoweredBy struct {
 	URL  string `yaml:"url"`
 }
 
-// PageData combines config with runtime data
 type PageData struct {
 	Config
 	BuildTime string
@@ -88,12 +87,14 @@ type PageData struct {
 
 var config Config
 
-// Set at build time via -ldflags
 var buildTime = "unknown"
 
 func main() {
+	port := flag.Int("port", 8080, "port to listen on")
+	flag.Parse()
+
 	if err := yaml.Unmarshal(configFile, &config); err != nil {
-		log.Fatalf("Failed to parse config: %v", err)
+		panic(err)
 	}
 
 	r := chi.NewRouter()
@@ -131,11 +132,12 @@ func main() {
 	r.Handle("/static/*", http.FileServer(http.FS(static)))
 	r.Handle("/assets/*", http.FileServer(http.FS(assets)))
 
-	port := os.Getenv("PORT")
-	if port == "" {
-		port = "8080"
-	}
+	r.NotFound(func(w http.ResponseWriter, r *http.Request) {
+		http.Redirect(w, r, "/", http.StatusMovedPermanently)
+	})
 
-	log.Printf("Starting server on :%s", port)
-	log.Fatal(http.ListenAndServe(":"+port, r))
+	slog.Info("Starting server", slog.String("listen_addr", ":"+strconv.Itoa(*port)))
+	if err := http.ListenAndServe(":"+strconv.Itoa(*port), r); err != nil {
+		panic(err)
+	}
 }

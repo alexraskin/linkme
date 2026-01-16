@@ -11,8 +11,6 @@ make build
 make run
 ```
 
-The server runs on port 8080 by default. Set the `PORT` environment variable to change it.
-
 ## Docker
 
 ```bash

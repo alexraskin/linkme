@@ -5,25 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{.Name}}{{if .Subtitle}} - {{.Subtitle}}{{end}}</title>
 
-    <!-- SEO -->
     <meta name="description" content="{{.Meta.Description}}">
     <meta name="author" content="{{.Name}}">
     <meta name="theme-color" content="{{.Background.Value}}">
 
-    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     {{if .Meta.SiteURL}}<meta property="og:url" content="{{.Meta.SiteURL}}">{{end}}
     <meta property="og:title" content="{{.Name}}{{if .Subtitle}} - {{.Subtitle}}{{end}}">
     <meta property="og:description" content="{{.Meta.Description}}">
     {{if .Meta.SiteURL}}<meta property="og:image" content="{{.Meta.SiteURL}}/{{.Avatar}}">{{end}}
 
-    <!-- Twitter -->
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="{{.Name}}{{if .Subtitle}} - {{.Subtitle}}{{end}}">
     <meta name="twitter:description" content="{{.Meta.Description}}">
     {{if .Meta.SiteURL}}<meta name="twitter:image" content="{{.Meta.SiteURL}}/{{.Avatar}}">{{end}}
 
-    <!-- Favicon -->
     {{if .Meta.Favicon}}<link rel="icon" type="image/png" href="/{{.Meta.Favicon}}">{{end}}
     <link rel="apple-touch-icon" href="/{{.Avatar}}">
 

@@ -1,0 +1,101 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', monospace;
+  background-color: #1a1d29;
+  color: #e0e0e0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.container {
+  width: 100%;
+  max-width: 480px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.avatar {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #2a2d3a;
+}
+
+.name {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-top: 0.5rem;
+}
+
+.bio {
+  font-size: 0.875rem;
+  color: #9ca3af;
+  text-align: center;
+}
+
+.links {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 1rem 1.5rem;
+  background-color: #ffffff;
+  color: #1a1d29;
+  text-decoration: none;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.link-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 1rem;
+  flex-shrink: 0;
+}
+
+.link-text {
+  flex: 1;
+  text-align: center;
+  margin-right: 36px; /* balance the icon */
+}
+
+.footer {
+  margin-top: 3rem;
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+
+.footer a {
+  color: #8b5cf6;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}

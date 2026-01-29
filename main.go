@@ -32,7 +32,7 @@ type PageData struct {
 var config = PageData{
 	Name:   "alex raskin",
 	Bio:    "devops engineer • cat dad • us-west-1",
-	Avatar: "https://avatars.githubusercontent.com/u/1234567", // replace with your avatar URL
+	Avatar: "https://avatars.githubusercontent.com/u/37590597",
 	Links: []Link{
 		{Title: "stand with iran", URL: "https://standwithiran.org", Icon: "❤️"},
 		{Title: "cease fire today", URL: "https://ceasefiretoday.com/", Icon: "✊"},

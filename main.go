@@ -2,10 +2,12 @@ package main
 
 import (
 	"bytes"
+	"embed"
 	_ "embed"
 	"html/template"
 	"net/http"
 
+	"github.com/go-chi/chi/v5"
 	"github.com/syumai/workers"
 )
 
@@ -15,13 +17,16 @@ var indexHTML string
 //go:embed static/style.css
 var styleCSS string
 
+//go:embed static/favicon.ico
+var faviconICO embed.FS
+
 type Link struct {
 	Title string
 	URL   string
 	Icon  string
 }
 
-type PageData struct {
+type About struct {
 	Name   string
 	Bio    string
 	Avatar string
@@ -29,10 +34,10 @@ type PageData struct {
 	Links  []Link
 }
 
-var config = PageData{
+var about = About{
 	Name:   "alex raskin",
 	Bio:    "devops engineer • cat dad • us-west-1",
-	Avatar: "https://avatars.githubusercontent.com/u/37590597",
+	Avatar: "https://cdn.raskin.io/37590597.jpg",
 	Links: []Link{
 		{Title: "stand with iran", URL: "https://standwithiran.org", Icon: "❤️"},
 		{Title: "cease fire today", URL: "https://ceasefiretoday.com/", Icon: "✊"},
@@ -45,14 +50,10 @@ var config = PageData{
 
 func main() {
 	tmpl := template.Must(template.New("index").Parse(indexHTML))
+	r := chi.NewRouter()
 
-	http.HandleFunc("/", func(w http.ResponseWriter, req *http.Request) {
-		if req.URL.Path != "/" {
-			http.NotFound(w, req)
-			return
-		}
-
-		data := config
+	r.Get("/", func(w http.ResponseWriter, req *http.Request) {
+		data := about
 		data.CSS = template.CSS(styleCSS)
 
 		var buf bytes.Buffer
@@ -65,5 +66,11 @@ func main() {
 		w.Write(buf.Bytes())
 	})
 
-	workers.Serve(nil)
+	r.NotFound(func(w http.ResponseWriter, req *http.Request) {
+		http.Redirect(w, req, "/", http.StatusMovedPermanently)
+	})
+
+	r.Handle("/favicon.ico", http.FileServer(http.FS(faviconICO)))
+
+	workers.Serve(r)
 }

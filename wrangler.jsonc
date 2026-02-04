@@ -23,11 +23,15 @@
 			"custom_domain": true
 		},
 		{
-			"pattern": "adrx.me",
+			"pattern": "raskin.io",
 			"custom_domain": true
 		},
 		{
-			"pattern": "www.adrx.me",
+			"pattern": "www.raskin.io",
+			"custom_domain": true
+		},
+		{
+			"pattern": "alex.raskin.io",
 			"custom_domain": true
 		}
 	]

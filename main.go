@@ -2,7 +2,6 @@ package main
 
 import (
 	"bytes"
-	"embed"
 	_ "embed"
 	"html/template"
 	"net/http"
@@ -11,14 +10,11 @@ import (
 	"github.com/syumai/workers"
 )
 
-//go:embed static/index.html
+//go:embed templates/index.html
 var indexHTML string
 
 //go:embed static/style.css
 var styleCSS string
-
-//go:embed static/favicon.ico
-var faviconICO embed.FS
 
 type Link struct {
 	Title string
@@ -27,17 +23,19 @@ type Link struct {
 }
 
 type About struct {
-	Name   string
-	Bio    string
-	Avatar string
-	CSS    template.CSS
-	Links  []Link
+	Name    string
+	Bio     string
+	Avatar  string
+	Favicon string
+	CSS     template.CSS
+	Links   []Link
 }
 
 var about = About{
-	Name:   "alex raskin",
-	Bio:    "devops engineer • cat dad • us-west-1",
-	Avatar: "https://cdn.raskin.io/37590597.jpg",
+	Name:    "alex raskin",
+	Bio:     "devops engineer • cat dad • us-west-1",
+	Avatar:  "https://cdn.raskin.io/avatar.jpg",
+	Favicon: "https://cdn.raskin.io/favicon.ico",
 	Links: []Link{
 		{Title: "stand with iran", URL: "https://standwithiran.org", Icon: "❤️"},
 		{Title: "cease fire today", URL: "https://ceasefiretoday.com/", Icon: "✊"},
@@ -69,8 +67,6 @@ func main() {
 	r.NotFound(func(w http.ResponseWriter, req *http.Request) {
 		http.Redirect(w, req, "/", http.StatusMovedPermanently)
 	})
-
-	r.Handle("/favicon.ico", http.FileServer(http.FS(faviconICO)))
 
 	workers.Serve(r)
 }

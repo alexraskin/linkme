@@ -43,6 +43,8 @@ var about = About{
 		{Title: "cosmo the cat", URL: "https://cosmothecat.net", Icon: "🐱"},
 		{Title: "github", URL: "https://github.com/alexraskin", Icon: "🐙"},
 		{Title: "twitter", URL: "https://twitter.com/notalexraskin", Icon: "𝕏"},
+		{Title: "bluesky", URL: "https://bsky.app/profile/alexraskin.bsky.social", Icon: "🐳"},
+		{Title: "last.fm", URL: "https://www.last.fm/user/alexraskin", Icon: "🎧"},
 	},
 }
 

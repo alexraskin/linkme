@@ -1,0 +1,25 @@
+{
+	"compatibility_date": "2026-04-16",
+	"compatibility_flags": [
+		"global_fetch_strictly_public"
+	],
+	"name": "linkme",
+	"main": "@astrojs/cloudflare/entrypoints/server",
+	"assets": {
+		"directory": "./dist",
+		"binding": "ASSETS",
+	},
+	"observability": {
+		"enabled": true,
+	},
+	"routes": [
+		{
+			"pattern": "raskin.io",
+			"custom_domain": true,
+		},
+		{
+			"pattern": "www.raskin.io",
+			"custom_domain": true,
+		},
+	],
+}
